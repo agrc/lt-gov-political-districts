@@ -1,0 +1,28 @@
+.dijitTextBox {
+	border-color: #ABADB3 !important;
+	padding: 2px;
+	background-color: white;
+}
+.dijitTextBox .dijitInputContainer, .dijitTextBox {
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+.dijitInputInner {
+	background-color: white !important;
+}
+.text-box {
+	width: 200px;
+}
+
+.text-box-cell {
+	padding: 2px 0;
+}
+.label-cell {
+	width: 79px;
+}
+.error-msg {
+	color: red;
+	display: none;
+	padding: 8px;
+	float: left;
+}

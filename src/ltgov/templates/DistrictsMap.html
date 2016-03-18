@@ -1,0 +1,625 @@
+<div>
+	<div id="main">
+		<div id="map-div" class="claro"></div>
+	</div> <!-- #main -->
+
+	<div id="sidebar-right">
+		<p>Disclaimer: This map takes effect on January 1, 2012, for purposes of nominating and electing
+			officials and on January 1, 2013,
+			for all other purposes. <a dojoattachpoint='moreInfoLink' href='#'>(More info)</a></p>
+		<p>Click on the map to see the political districts for that location.</p>
+		<div class="claro btn-container">
+			<button dojoattachpoint="printBtn" dojotype="dojox.form.BusyButton" 
+				class="btn" busyLabel="Generating PDF...">Print Current Map To PDF</button>
+		</div>
+		<div class="clear"></div>
+		<div id="print-results"></div>
+		<h4>Districts</h4>
+		<div class='claro slider-container'> <!-- this is to prevent possible css collisions between claro and style.css-->
+			<div id="districts-slider"></div>
+		</div>
+		<div class="clear"></div>
+		<input type="radio" id="congressional" name="districts" checked value="0">
+		<label for="congressional">US Congress</label> <span class='smaller-text'>(<a name="congress-header-small" href="" class="pdf-link-small">PDF Maps</a>)</span>
+		<br>
+		<input type="radio" id="senate" name="districts" value="1">
+		<label for="senate">State Senate</label> <span class='smaller-text'>(PDF Maps: <a name="senate-header-large" href="" class="pdf-link-large">large</a> | <a name="senate-header-small" href="" class="pdf-link-small">small</a>)</span>
+		<br>
+		<input type="radio" id="house" name="districts" value="2">
+		<label for="house">State House</label> <span class='smaller-text'>(PDF Maps: <a name="house-header-large" href="" class="pdf-link-large">large</a> | <a name="house-header-small" href="" class="pdf-link-small">small</a>)</span>
+		<br>
+		<input type="radio" id="school" name="districts" value="3">
+		<label for="school">State Board of Edu.</label> <span class='smaller-text'>(<a name="school-header-small" href="" class="pdf-link-small">PDF Maps</a>)</span>
+		<br><a name='county-header-small' href='' class='pdf-link-small'>PDF Maps by County</a>
+		
+		<div style='display: none;'>
+		<h4 id="other-header" class="disabled-text">Voting Precincts <span id='precincts-msg'></span></h4>
+		<div class='claro'>
+			<div id="other-slider"></div>
+		</div>
+		</div>
+		<div class="clear"></div>
+		
+		<div id="find-location"></div>
+		<a href='http://gis.utah.gov/data/political/' title='gis data download' target='_blank'>Download GIS Data</a>
+	</div> <!-- #sidebar -->
+	<div class='claro pdf-dialog' dojoattachpoint="pdfDialogSmall" dojoType="dijit.Dialog" title="Static PDF Maps (8.5x11)">
+		<div dojoattachpoint='smallDialogSizer' class='pdf-dialog-sizer'>
+			<h4 id="congress-header-small" class="top-header">Congressional Districts</h4>
+			<table>
+				<tbody>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/USCongressionalDistrict1_2012.pdf"><div class="link-sizer">1</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/USCongressionalDistrict2_2012.pdf"><div class="link-sizer">2</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/USCongressionalDistrict3_2012.pdf"><div class="link-sizer">3</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/USCongressionalDistrict4_2012.pdf"><div class="link-sizer">4</div></a></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<h4 id="senate-header-small">State Senate Districts</h4>
+			<table>
+				<tbody>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict1_2012.pdf"><div class="link-sizer">1</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict2_2012.pdf"><div class="link-sizer">2</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict3_2012.pdf"><div class="link-sizer">3</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict4_2012.pdf"><div class="link-sizer">4</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict5_2012.pdf"><div class="link-sizer">5</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict6_2012.pdf"><div class="link-sizer">6</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict7_2012.pdf"><div class="link-sizer">7</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict8_2012.pdf"><div class="link-sizer">8</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict9_2012.pdf"><div class="link-sizer">9</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict10_2012.pdf"><div class="link-sizer">10</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict11_2012.pdf"><div class="link-sizer">11</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict12_2012.pdf"><div class="link-sizer">12</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict13_2012.pdf"><div class="link-sizer">13</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict14_2012.pdf"><div class="link-sizer">14</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict15_2012.pdf"><div class="link-sizer">15</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict16_2012.pdf"><div class="link-sizer">16</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict17_2012.pdf"><div class="link-sizer">17</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict18_2012.pdf"><div class="link-sizer">18</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict19_2012.pdf"><div class="link-sizer">19</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict20_2012.pdf"><div class="link-sizer">20</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict21_2012.pdf"><div class="link-sizer">21</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict22_2012.pdf"><div class="link-sizer">22</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict23_2012.pdf"><div class="link-sizer">23</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict24_2012.pdf"><div class="link-sizer">24</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict25_2012.pdf"><div class="link-sizer">25</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict26_2012.pdf"><div class="link-sizer">26</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict27_2012.pdf"><div class="link-sizer">27</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict28_2012.pdf"><div class="link-sizer">28</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSenateDistrict29_2012.pdf"><div class="link-sizer">29</div></a></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<h4 id="house-header-small">State House Districts</h4>
+			<table>
+				<tbody>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict1_2012.pdf"><div class="link-sizer">1</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict2_2012.pdf"><div class="link-sizer">2</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict3_2012.pdf"><div class="link-sizer">3</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict4_2012.pdf"><div class="link-sizer">4</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict5_2012.pdf"><div class="link-sizer">5</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict6_2012.pdf"><div class="link-sizer">6</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict7_2012.pdf"><div class="link-sizer">7</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict8_2012.pdf"><div class="link-sizer">8</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict9_2012.pdf"><div class="link-sizer">9</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict10_2012.pdf"><div class="link-sizer">10</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict11_2012.pdf"><div class="link-sizer">11</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict12_2012.pdf"><div class="link-sizer">12</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict13_2012.pdf"><div class="link-sizer">13</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict14_2012.pdf"><div class="link-sizer">14</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict15_2012.pdf"><div class="link-sizer">15</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict16_2012.pdf"><div class="link-sizer">16</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict17_2012.pdf"><div class="link-sizer">17</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict18_2012.pdf"><div class="link-sizer">18</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict19_2012.pdf"><div class="link-sizer">19</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict20_2012.pdf"><div class="link-sizer">20</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict21_2012.pdf"><div class="link-sizer">21</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict22_2012.pdf"><div class="link-sizer">22</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict23_2012.pdf"><div class="link-sizer">23</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict24_2012.pdf"><div class="link-sizer">24</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict25_2012.pdf"><div class="link-sizer">25</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict26_2012.pdf"><div class="link-sizer">26</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict27_2012.pdf"><div class="link-sizer">27</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict28_2012.pdf"><div class="link-sizer">28</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict29_2012.pdf"><div class="link-sizer">29</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict30_2012.pdf"><div class="link-sizer">30</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict31_2012.pdf"><div class="link-sizer">31</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict32_2012.pdf"><div class="link-sizer">32</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict33_2012.pdf"><div class="link-sizer">33</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict34_2012.pdf"><div class="link-sizer">34</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict35_2012.pdf"><div class="link-sizer">35</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict36_2012.pdf"><div class="link-sizer">36</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict37_2012.pdf"><div class="link-sizer">37</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict38_2012.pdf"><div class="link-sizer">38</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict39_2012.pdf"><div class="link-sizer">39</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict40_2012.pdf"><div class="link-sizer">40</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict41_2012.pdf"><div class="link-sizer">41</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict42_2012.pdf"><div class="link-sizer">42</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict43_2012.pdf"><div class="link-sizer">43</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict44_2012.pdf"><div class="link-sizer">44</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict45_2012.pdf"><div class="link-sizer">45</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict46_2012.pdf"><div class="link-sizer">46</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict47_2012.pdf"><div class="link-sizer">47</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict48_2012.pdf"><div class="link-sizer">48</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict49_2012.pdf"><div class="link-sizer">49</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict50_2012.pdf"><div class="link-sizer">50</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict51_2012.pdf"><div class="link-sizer">51</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict52_2012.pdf"><div class="link-sizer">52</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict53_2012.pdf"><div class="link-sizer">53</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict54_2012.pdf"><div class="link-sizer">54</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict55_2012.pdf"><div class="link-sizer">55</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict56_2012.pdf"><div class="link-sizer">56</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict57_2012.pdf"><div class="link-sizer">57</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict58_2012.pdf"><div class="link-sizer">58</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict59_2012.pdf"><div class="link-sizer">59</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict60_2012.pdf"><div class="link-sizer">60</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict61_2012.pdf"><div class="link-sizer">61</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict62_2012.pdf"><div class="link-sizer">62</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict63_2012.pdf"><div class="link-sizer">63</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict64_2012.pdf"><div class="link-sizer">64</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict65_2012.pdf"><div class="link-sizer">65</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict66_2012.pdf"><div class="link-sizer">66</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict67_2012.pdf"><div class="link-sizer">67</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict68_2012.pdf"><div class="link-sizer">68</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict69_2012.pdf"><div class="link-sizer">69</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict70_2012.pdf"><div class="link-sizer">70</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict71_2012.pdf"><div class="link-sizer">71</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict72_2012.pdf"><div class="link-sizer">72</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict73_2012.pdf"><div class="link-sizer">73</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict74_2012.pdf"><div class="link-sizer">74</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahHouseDistrict75_2012.pdf"><div class="link-sizer">75</div></a></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<h4 id="school-header-small">State Board of Education Districts</h4>
+			<table>
+				<tbody>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict1_2012.pdf"><div class="link-sizer">1</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict2_2012.pdf"><div class="link-sizer">2</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict3_2012.pdf"><div class="link-sizer">3</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict4_2012.pdf"><div class="link-sizer">4</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict5_2012.pdf"><div class="link-sizer">5</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict6_2012.pdf"><div class="link-sizer">6</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict7_2012.pdf"><div class="link-sizer">7</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict8_2012.pdf"><div class="link-sizer">8</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict9_2012.pdf"><div class="link-sizer">9</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict10_2012.pdf"><div class="link-sizer">10</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict11_2012.pdf"><div class="link-sizer">11</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict12_2012.pdf"><div class="link-sizer">12</div></a></td>
+					</tr>
+					<tr>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict13_2012.pdf"><div class="link-sizer">13</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict14_2012.pdf"><div class="link-sizer">14</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UtahSchoolBoardDistrict15_2012.pdf"><div class="link-sizer">15</div></a></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<h4 id="county-header-small">Maps by County</h4>
+			<table>
+				<tbody>
+					<tr>
+						<td>Beaver</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/BEAVERCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/BEAVERCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/BEAVERCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/BEAVERCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Box Elder</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/BOXELDERCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/BOXELDERCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/BOXELDERCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/BOXELDERCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Cache</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/CACHECounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/CACHECounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/CACHECounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/CACHECounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Carbon</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/CARBONCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/CARBONCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/CARBONCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/CARBONCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Daggett</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DAGGETTCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DAGGETTCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DAGGETTCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DAGGETTCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Davis</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DAVISCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DAVISCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DAVISCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DAVISCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Duchesne</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DUCHESNECounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DUCHESNECounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DUCHESNECounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/DUCHESNECounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Emery</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/EMERYCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/EMERYCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/EMERYCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/EMERYCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Garfield</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/GARFIELDCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/GARFIELDCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/GARFIELDCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/GARFIELDCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Grand</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/GRANDCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/GRANDCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/GRANDCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/GRANDCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Iron</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/IRONCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/IRONCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/IRONCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/IRONCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Juab</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/JUABCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/JUABCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/JUABCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/JUABCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Kane</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/KANECounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/KANECounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/KANECounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/KANECounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Millard</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/MILLARDCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/MILLARDCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/MILLARDCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/MILLARDCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Morgan</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/MORGANCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/MORGANCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/MORGANCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/MORGANCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Piute</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/PIUTECounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/PIUTECounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/PIUTECounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/PIUTECounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Rich</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/RICHCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/RICHCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/RICHCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/RICHCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Salt Lake</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SALTLAKECounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SALTLAKECounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SALTLAKECounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SALTLAKECounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>San Juan</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SANJUANCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SANJUANCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SANJUANCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SANJUANCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Sanpete</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SANPETECounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SANPETECounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SANPETECounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SANPETECounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Sevier</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SEVIERCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SEVIERCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SEVIERCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SEVIERCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Summit</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SUMMITCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SUMMITCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SUMMITCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/SUMMITCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Tooele</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/TOOELECounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/TOOELECounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/TOOELECounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/TOOELECounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Uintah</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UINTAHCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UINTAHCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UINTAHCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UINTAHCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Utah</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UTAHCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UTAHCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UTAHCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/UTAHCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Wasatch</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WASATCHCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WASATCHCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WASATCHCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WASATCHCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Washington</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WASHINGTONCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WASHINGTONCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WASHINGTONCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WASHINGTONCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Wayne</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WAYNECounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WAYNECounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WAYNECounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WAYNECounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+					<tr>
+						<td>Weber</td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WEBERCounty_USCongressionalDistricts_2012.pdf"><div class="link-sizer">Congress</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WEBERCounty_UtahSenateDistricts_2012.pdf"><div class="link-sizer">Senate</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WEBERCounty_UtahHouseDistricts_2012.pdf"><div class="link-sizer">House</div></a></td>
+						<td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/WEBERCounty_UtahSchoolBoardDistricts_2012.pdf"><div class="link-sizer">State Board of Ed</div></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class='claro pdf-dialog' dojoattachpoint="pdfDialogLarge" dojoType="dijit.Dialog" title="Static PDF Maps (34x22)">
+        <div dojoattachpoint='largeDialogSizer' class='pdf-dialog-sizer'>
+            <h4 id="senate-header-large">State Senate Districts</h4>
+            <table>
+            	<tbody>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict1.pdf"><div class="link-sizer">1</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict2.pdf"><div class="link-sizer">2</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict3.pdf"><div class="link-sizer">3</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict4.pdf"><div class="link-sizer">4</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict5.pdf"><div class="link-sizer">5</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict6.pdf"><div class="link-sizer">6</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict7.pdf"><div class="link-sizer">7</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict8.pdf"><div class="link-sizer">8</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict9.pdf"><div class="link-sizer">9</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict10.pdf"><div class="link-sizer">10</div></a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict11.pdf"><div class="link-sizer">11</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict12.pdf"><div class="link-sizer">12</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict13.pdf"><div class="link-sizer">13</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict14.pdf"><div class="link-sizer">14</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict15.pdf"><div class="link-sizer">15</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict16.pdf"><div class="link-sizer">16</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict17.pdf"><div class="link-sizer">17</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict18.pdf"><div class="link-sizer">18</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict19.pdf"><div class="link-sizer">19</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict20.pdf"><div class="link-sizer">20</div></a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict21.pdf"><div class="link-sizer">21</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict22.pdf"><div class="link-sizer">22</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict23.pdf"><div class="link-sizer">23</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict24.pdf"><div class="link-sizer">24</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict25.pdf"><div class="link-sizer">25</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict26.pdf"><div class="link-sizer">26</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict27.pdf"><div class="link-sizer">27</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict28.pdf"><div class="link-sizer">28</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistrict29.pdf"><div class="link-sizer">29</div></a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table> <tbody> <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahSenateDistricts/SenateDistricts_WasatchFront.pdf"><div class="link-sizer">Wasatch Front</div></a></td>
+                	</tr>
+                </tbody>
+            </table>
+            
+            <h4 id="house-header-large">State House Districts</h4>
+            <table>
+            	<tbody>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict1.pdf"><div class="link-sizer">1</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict2.pdf"><div class="link-sizer">2</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict3.pdf"><div class="link-sizer">3</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict4.pdf"><div class="link-sizer">4</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict5.pdf"><div class="link-sizer">5</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict6.pdf"><div class="link-sizer">6</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict7.pdf"><div class="link-sizer">7</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict8.pdf"><div class="link-sizer">8</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict9.pdf"><div class="link-sizer">9</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict10.pdf"><div class="link-sizer">10</div></a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict11.pdf"><div class="link-sizer">11</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict12.pdf"><div class="link-sizer">12</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict13.pdf"><div class="link-sizer">13</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict14.pdf"><div class="link-sizer">14</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict15.pdf"><div class="link-sizer">15</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict16.pdf"><div class="link-sizer">16</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict17.pdf"><div class="link-sizer">17</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict18.pdf"><div class="link-sizer">18</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict19.pdf"><div class="link-sizer">19</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict20.pdf"><div class="link-sizer">20</div></a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict21.pdf"><div class="link-sizer">21</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict22.pdf"><div class="link-sizer">22</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict23.pdf"><div class="link-sizer">23</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict24.pdf"><div class="link-sizer">24</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict25.pdf"><div class="link-sizer">25</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict26.pdf"><div class="link-sizer">26</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict27.pdf"><div class="link-sizer">27</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict28.pdf"><div class="link-sizer">28</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict29.pdf"><div class="link-sizer">29</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict30.pdf"><div class="link-sizer">30</div></a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict31.pdf"><div class="link-sizer">31</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict32.pdf"><div class="link-sizer">32</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict33.pdf"><div class="link-sizer">33</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict34.pdf"><div class="link-sizer">34</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict35.pdf"><div class="link-sizer">35</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict36.pdf"><div class="link-sizer">36</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict37.pdf"><div class="link-sizer">37</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict38.pdf"><div class="link-sizer">38</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict39.pdf"><div class="link-sizer">39</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict40.pdf"><div class="link-sizer">40</div></a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict41.pdf"><div class="link-sizer">41</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict42.pdf"><div class="link-sizer">42</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict43.pdf"><div class="link-sizer">43</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict44.pdf"><div class="link-sizer">44</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict45.pdf"><div class="link-sizer">45</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict46.pdf"><div class="link-sizer">46</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict47.pdf"><div class="link-sizer">47</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict48.pdf"><div class="link-sizer">48</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict49.pdf"><div class="link-sizer">49</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict50.pdf"><div class="link-sizer">50</div></a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict51.pdf"><div class="link-sizer">51</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict52.pdf"><div class="link-sizer">52</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict53.pdf"><div class="link-sizer">53</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict54.pdf"><div class="link-sizer">54</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict55.pdf"><div class="link-sizer">55</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict56.pdf"><div class="link-sizer">56</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict57.pdf"><div class="link-sizer">57</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict58.pdf"><div class="link-sizer">58</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict59.pdf"><div class="link-sizer">59</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict60.pdf"><div class="link-sizer">60</div></a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict61.pdf"><div class="link-sizer">61</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict62.pdf"><div class="link-sizer">62</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict63.pdf"><div class="link-sizer">63</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict64.pdf"><div class="link-sizer">64</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict65.pdf"><div class="link-sizer">65</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict66.pdf"><div class="link-sizer">66</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict67.pdf"><div class="link-sizer">67</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict68.pdf"><div class="link-sizer">68</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict69.pdf"><div class="link-sizer">69</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict70.pdf"><div class="link-sizer">70</div></a></td>
+                    </tr>
+                    <tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict71.pdf"><div class="link-sizer">71</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict72.pdf"><div class="link-sizer">72</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict73.pdf"><div class="link-sizer">73</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict74.pdf"><div class="link-sizer">74</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistrict75.pdf"><div class="link-sizer">75</div></a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <tbody>
+                	<tr>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistricts_WasatchFrontNorth.pdf"><div class="link-sizer">Wasatch Front North</div></a></td>
+                        <td><a target="_blank" href="/Media/Default/Documents/VotingDistrictMaps/LargeFormat/UtahHouseDistricts/HouseDistricts_WasatchFrontSouth.pdf"><div class="link-sizer">Wasatch Front South</div></a></td>
+                	</tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+	<div dojoattachpoint='moreInfoDialog' dojoType='dijit.Dialog' title='Map Disclaimer' class='claro'>
+		<div class='more-info-sizer'>
+			<p class='top-paragraph'>Please note: Maps are subject to change.</p>
+			<p>S.B 3005, passed during the 2011 3rd Special Session, grants limited authority, until 
+				January 31, 2012, to the lieutenant governor to determine the district to which a 
+				residence is assigned if the lieutenant governor determines that the residence is 
+				within more than one district. Determinations made by the lieutenant governor may 
+				effect the boundary representations on this website. For more information please 
+				contact the Lieutenant Governor’s Office at (800) 995-VOTE or 
+				<a href="mailto:elections@utah.gov">elections@utah.gov</a>.  
+			</p>
+			<p>Changes to voting precincts are the authority of the county clerk. Whenever the 
+				boundaries of any voting precinct are changed, or a new voting precinct is created, 
+				the county clerk shall submit a voting precinct map identifying the boundaries of 
+				each voting precinct within the county to the lieutenant governor and to the Automated 
+				Geographic Reference Center (AGRC) for review. The precinct and address information 
+				are correct according to data that has been evaluated by the lieutenant governor and 
+				AGRC. Pending or proposed changes are not reflected on this website. See Utah 
+				Annotated Code 67-1a-2.2 and 36-1-103.2. 
+			</p>
+			<br>
+			<div dojoattachpoint='moreInfoOk' dojoType='dijit.form.Button' class='more-info-btn'>OK</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-11849964-38']);
+		_gaq.push(['_trackPageview']); (function() {
+			var ga = document.createElement('script');
+			ga.type = 'text/javascript';
+			ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</div>

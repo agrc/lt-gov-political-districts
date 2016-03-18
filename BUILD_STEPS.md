@@ -1,0 +1,8 @@
+- Update `server` in DistrictMaps.js to point to server.
+- Update path to css/agrc_map.css to point to correct server
+- Update `gpUrl` in PrintMap.js to point to server.
+- build (old windows build system - run /buildsupportfiles/build.bat)
+- Update ltgov modulePath in build/js/agrc_map.js to point to local.
+- test
+- point it back to server
+- upload

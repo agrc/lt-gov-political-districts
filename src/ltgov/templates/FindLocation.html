@@ -1,0 +1,43 @@
+<div class="find-address claro">
+    <h4>${title}</h4>
+    <table>
+        <tr>
+            <td class="label-cell">
+                <!-- the inner div is to control the width of the column -->
+                <div class="label-cell-inner">
+                    Address</div>
+            </td>
+            <td class="text-box-cell">
+                <div dojoattachpoint="txt_address" dojotype="dijit.form.ValidationTextBox"
+                    class="text-box" trim="true" propercase="false" value='' placeholder="optional">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="label-cell">
+                Zip or City
+            </td>
+            <td class="text-box-cell">
+                <div dojoattachpoint="txt_zone" class="text-box" dojotype="dijit.form.ValidationTextBox"
+                 value=""></div>
+                <div class="">
+                	<div id="magic-zoom"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td class="btn-cell">
+                <button type="submit" dojoattachpoint="btn_geocode" dojotype="dojox.form.BusyButton"
+                    class="btn" dojoattachevent="onClick:geocodeAddress" busyLabel="Locating..." disabled>
+                    <!-- this extra div is required to adjust the width of the button -->
+                    <div class="find-btn-inner">
+                        Find</div>
+                </button>
+                <!-- <button class="find-btn" type="submit" dojoattachpoint="btn_geocode">Find</button> -->
+                <span dojoattachpoint='errorMsg' class="error-msg">No Match Found!</span>
+            </td>
+        </tr>
+    </table>
+</div>

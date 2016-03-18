@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+	<head>
+		<meta name="description" content="Official website of Utah Lt. Governor Greg Bell. Contains his views and information plus links to other Utah websites." />
+		<meta name="robots" content="NOODP"/>
+		<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rdf_url'); ?>" />
+		<title>Lt. Governor</title>
+		<link rel="stylesheet" href="http://www.utah.gov/ltgovernor/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<!-- For Local Style Ovverrides and jQuery -->
+	</head>
+	<body <?php body_class(); ?> id="sblog">
+		<p class="skipnav"><a href="#main">Skip Navigation</a></p>
+		<div id="wrapper">
+			<div id="content">
+				<div id="navigation">
+                    <ul>
+                        <li><a href="/ltgovernor/index.html" id="home">Home</a></li>
+                        <li><a href="/ltgovernor/about/index.html" id="about">About</a></li>
+                        <li><a href="/ltgovernor/news/index.html" id="news">News</a></li>
+                        <li><a href="/ltgovernor/contact/request-form.html" id="request">Request the Lt. Governor</a></li>
+                        <li><a href="/ltgovernor/staff/index.html" id="staff">Staff</a></li>
+                        <li><a href="/ltgovernor/contact/index.html" id="contact">Contact</a></li>
+                        <li><a href="http://blog.lg.utah.gov/" id="blog">Blog</a></li>
+                    </ul>
+				</div>
+				<div id="header">
+				</div> <!-- #header -->			
+				<div id="breadcrumb">
+					<ul>
+						<li><a href="http://www.utah.gov/ltgovernor/">Lt. Governor Home</a></li>
+						<li><a href="http://agrc.utah.gov/">AGRC</a></li>
+						<li>Voting Districts</li>
+					</ul>
+				</div>
+
+				<div id="agrc-map">
+					<div style="left: 21%; position: relative;">
+						<img alt="loader image" src="images/loader.gif" style="vertical-align: middle;"/>
+						Loading Map Viewer...
+					</div>
+				</div>
+				<script type="text/javascript" src="js/agrc_map.js"></script>
+
+				<div class="clear"></div>
+
+				<div id="footer">
+					<script src="http://www.utah.gov/nav/fluidfooter.js" type="text/javascript"></script>
+				</div><div class="clear"></div><!-- /#footer -->
+			</div> <!-- /#content -->
+		</div> <!-- /#wrapper -->	
+
+		<!-- Google Analytics -->
+		<script type="text/javascript">
+			var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+			document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+			var pageTracker = _gat._getTracker("UA-827740-28");
+			pageTracker._trackPageview();
+		</script>
+	</body>
+</html>

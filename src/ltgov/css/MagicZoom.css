@@ -1,0 +1,36 @@
+.magic-zoom .text-box {
+	display: none;
+}
+.magic-zoom .matches-table {
+	position: absolute;
+	background-color: white;
+}
+.magic-zoom .matches-table {
+	border: 1px solid #B5BCC7;
+	background-color: white;
+	display: none;
+	float: left;
+	z-index: 99;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+}
+.magic-zoom .matches-table td {
+	padding: 2px;
+	border: solid 1px white;
+}
+.magic-zoom .matches-table td:hover {
+	background-color: #D6D6D6;
+	cursor: pointer;
+}
+.magic-zoom .matches-table .highlighted-row {
+    background-color: #D6D6D6;
+}
+.magic-zoom .shadow {	
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+.magic-zoom .hidden-cell {
+	display: none;
+}
+.magic-zoom .selected-cell {
+    background-color: #D6D6D6;
+}
