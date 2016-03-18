@@ -1,0 +1,20 @@
+{
+  "name": "lt-gov-political-districts",
+  "description": "App for http://elections.utah.gov/map/district-maps",
+  "main": "src/index.html",
+  "authors": [
+    "Scott Davis <stdavis@utah.gov>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/stdavis/lt-gov-political-districts",
+  "moduleType": [
+    "amd"
+  ],
+  "private": true,
+  "dependencies": {
+    "dijit": "1.6.1",
+    "dojo": "1.6.1",
+    "dojox": "1.6.1",
+    "util": "dojo-util#1.6.1"
+  }
+}
