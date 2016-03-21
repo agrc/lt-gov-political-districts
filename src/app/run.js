@@ -10,17 +10,24 @@
             'dojo',
             'dojox',
             'esri',
-            'jquery',
             'put-selector',
             'sherlock',
-            'spinjs',
             'xstyle',
             {
+                name: 'jquery',
+                location: 'jquery/dist',
+                main: 'jquery'
+            }, {
                 name: 'spin',
-                location: 'spinjs',
+                location: './spinjs',
                 main: 'spin'
             }
-        ]
+        ],
+        map: {
+            sherlock: {
+                'spinjs/spin': 'spin'
+            }
+        }
     }, [
         'jquery/dist/jquery',
         'app/App',

@@ -13,14 +13,12 @@ var profile = {
             include: [
                 'dojo/i18n',
                 'dojo/domReady',
-                'app/packages',
                 'app/run',
                 'app/App',
                 'dojox/gfx/path',
                 'dojox/gfx/svg',
                 'dojox/gfx/shape'
             ],
-            targetStylesheet: 'app/resources/App.css',
             includeLocales: ['en-us'],
             customBase: true,
             boot: true
