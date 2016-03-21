@@ -1,41 +1,56 @@
 define([
     'agrc/widgets/locate/FindAddress',
 
-    'app/MagicZoom',
+    'app/config',
 
     'dijit/form/ValidationTextBox',
     'dijit/_WidgetsInTemplateMixin',
 
+    'dojo/aspect',
     'dojo/dom-style',
+    'dojo/has',
     'dojo/text!app/templates/FindLocation.html',
     'dojo/topic',
     'dojo/when',
     'dojo/_base/declare',
-    'dojo/_base/lang'
+    'dojo/_base/lang',
+
+    'sherlock/providers/WebAPI',
+    'sherlock/Sherlock',
+
+    'dojox/form/BusyButton'
 ], function (
     FindAddress,
 
-    MagicZoom,
+    config,
 
     ValidationTextBox,
     _WidgetsInTemplateMixin,
 
+    aspect,
     domStyle,
+    has,
     template,
     topic,
     when,
     declare,
-    lang
+    lang,
+
+    WebAPI,
+    Sherlock
 ) {
     return declare([FindAddress, _WidgetsInTemplateMixin], {
         // summary:
         //        Just to make Find Address look nicer with this web site.
 
+        widgetsInTemplate: true,
         baseClass: 'find-address claro',
 
         // templateString: [private] String
         //        Path to template. See dijit._Templated
         templateString: template,
+
+        apiKey: config.apiKey,
 
         // app: DistrictsMap
         app: null,
@@ -43,8 +58,8 @@ define([
         // title: String
         title: 'Find Location',
 
-        // magicZoom: MagicZoom
-        magicZoom: null,
+        // sherlock: MagicZoom
+        sherlock: null,
 
         postCreate: function () {
             // summary:
@@ -60,25 +75,20 @@ define([
             //      sets up the magic zoom widget
             console.log('app/FindLocation:initMagicZoom', arguments);
 
-            // TODO: change to sherlock pointed at cities/zips data
-            this.magicZoom = new MagicZoom({
-                mapServiceURL: this.precinctsBlocksServiceUrl,
-                searchLayerIndex: 1,
-                searchField: 'NAME',
+            var provider = new WebAPI(
+                config.apiKey,
+                'SGID10.BOUNDARIES.ZipCodes',
+                'ZIP5'
+            );
+            this.sherlock = new Sherlock({
+                provider: provider,
                 map: this.map,
                 maxResultsToDisplay: 3
             }, 'magic-zoom');
-            this.magicZoom.startup();
+            this.sherlock.startup();
 
-            this.connect(this.magicZoom, 'onRowClicked', 'onMagicSearchRowClick');
-        },
-        _wireEvents: function () {
-            // summary:
-            //      overrides function from inherited class
-            console.log('app/FindLocation:_wireEvents', arguments);
-
-            this.connect(this.txtAddress, 'onKeyUp', '_checkEnter');
-            this.connect(this.txtZone, 'onKeyUp', 'updateMagicZoom');
+            aspect.after(this.sherlock, 'onRowClicked', lang.hitch(this, 'onMagicSearchRowClick'));
+            aspect.after(this.sherlock, '_zoom', lang.hitch(this.btnGeocode, 'cancel'));
         },
         _checkEnter: function () {
             // summary:
@@ -93,8 +103,6 @@ define([
             } else {
                 this.btnGeocode.set('disabled', true);
             }
-
-            // this.inherited(arguments);
         },
         updateMagicZoom: function (evt) {
             // summary:
@@ -102,8 +110,8 @@ define([
             //        to the magic zoom widget
             console.log('app/FindLocation:updateMagicZoom', arguments);
 
-            this.magicZoom.textBox.set('value', this.txtZone.get('value'));
-            this.magicZoom._search(this.magicZoom.textBox.get('value'));
+            this.sherlock.textBox.value = this.txtZone.get('value');
+            this.sherlock._search(this.sherlock.textBox.value);
             this._checkEnter(evt);
         },
         onMagicSearchRowClick: function (value) {
@@ -124,36 +132,15 @@ define([
 
             if (this.txtAddress.get('value').length === 0 &&
             this.txtZone.get('value').length > 0) {
-                var def = this.magicZoom.zoom(this.txtZone.get('value'));
-                var that = this;
-                def.then(function () {
-                    that.btnGeocode.cancel();
-                }, function () {
-                    that.btnGeocode.cancel();
-                    domStyle.set(that.errorMsg, 'display', 'block');
+                this.sherlock._setMatch({
+                    textContent: this.txtZone.get('value')
                 });
             } else {
-                if (this._validate()) {
-                    topic.publish('agrc.widgets.locate.FindAddress.OnFindStart');
-
-                    this.btnGeocode.makeBusy();
-
-                    if (this.map) {
-                        if (this._graphic) {
-                            this.graphicsLayer.remove(this._graphic);
-                        }
-                    }
-
-                    var address = this.txtAddress.value;
-                    var zone = this.txtZone.value;
-
-                    var deferred = this._invokeWebService({ address: address, zone: zone });
-
-                    when(deferred, lang.hitch(this, '_onFind'), lang.hitch(this, '_onError'));
-                } else {
-                    this.btnGeocode.cancel();
-                }
+                this.inherited(arguments);
             }
+        },
+        _done: function () {
+            this.btnGeocode.cancel();
         }
     });
 });

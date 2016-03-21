@@ -227,7 +227,7 @@ define([
                     defZoom.remove();
                     defPan.remove();
 
-                    var pnt = new Point(result.UTM_X, result.UTM_Y, that.map.spatialReference);
+                    var pnt = new Point(result.location.x, result.location.y, that.map.spatialReference);
                     that.identify.identifyPoint(pnt);
                 }
 

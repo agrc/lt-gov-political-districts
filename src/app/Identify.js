@@ -74,9 +74,7 @@ define([
         //        sets up the popup
         console.info('Identify:initPopup', arguments);
 
-        console.log('here');
         this.popup = new Popup({}, domConstruct.create('div'));
-        console.log('after');
         this.popup.resize(295, 143);
         this.popup.setTitle('Map Point Areas');
 

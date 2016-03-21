@@ -1,5 +1,6 @@
 node_modules/
 secrets.json
+src/agrc-jasmine-matchers/
 src/agrc/
 src/bootstrap/
 src/components-jasmine/
@@ -14,6 +15,7 @@ src/jasmine-favicon-reporter/
 src/jasmine-jsreporter/
 src/jquery/
 src/put-selector/
+src/sherlock/
 src/spinjs/
 src/util/
 src/xstyle/

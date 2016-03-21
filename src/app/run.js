@@ -12,6 +12,8 @@
             'esri',
             'jquery',
             'put-selector',
+            'sherlock',
+            'spinjs',
             'xstyle',
             {
                 name: 'spin',

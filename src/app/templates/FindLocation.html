@@ -9,17 +9,20 @@
                         Address</div>
                 </td>
                 <td class="text-box-cell">
-                    <div data-dojo-attach-point="txtAddress" data-dojo-type="dijit/form/ValidationTextBox"
+                    <div data-dojo-attach-point="txtAddress"
+                        data-dojo-type="dijit/form/ValidationTextBox"
+                        data-dojo-attach-event='keyup: _checkEnter'
                         class="text-box" trim="true" propercase="false" value='' placeholder="optional">
                     </div>
                 </td>
             </tr>
             <tr>
                 <td class="label-cell">
-                    Zip or City
+                    Zip
                 </td>
                 <td class="text-box-cell">
                     <div data-dojo-attach-point="txtZone" class="text-box"
+                        data-dojo-attach-event='keyup: updateMagicZoom'
                         data-dojo-type="dijit/form/ValidationTextBox"
                         value=""></div>
                     <div class="">
@@ -31,11 +34,11 @@
                 <td>
                 </td>
                 <td class="btn-cell">
-                    <button type="submit" data-dojo-attach-point="btnGeocode" data-dojo-type="dojox/form/BusyButton"
-                        class="btn" data-dojo-attach-event="onClick:geocodeAddress" busyLabel="Locating..." disabled>
-                        <!-- this extra div is required to adjust the width of the button -->
-                        <div class="find-btn-inner">
-                            Find</div>
+                    <button type="submit" data-dojo-attach-point="btnGeocode"
+                        data-dojo-type="dojox/form/BusyButton"
+                        class="btn"
+                        busyLabel="Locating..." disabled>
+                        Find
                     </button>
                     <!-- <button class="find-btn" type="submit" data-dojo-attach-point="btn_geocode">Find</button> -->
                     <span data-dojo-attach-point='errorMsg' class="error-msg">No Match Found!</span>
