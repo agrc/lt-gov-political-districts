@@ -1,0 +1,29 @@
+{
+  "name": "lt-gov-political-districts",
+  "version": "1.0.0",
+  "description": "App for http://elections.utah.gov/map/district-maps",
+  "main": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stdavis/lt-gov-political-districts.git"
+  },
+  "author": "Scott Davis <stdavis@utah.gov>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stdavis/lt-gov-political-districts/issues"
+  },
+  "homepage": "https://github.com/stdavis/lt-gov-political-districts#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-dojo": "^1.1.1",
+    "grunt-eslint": "^18.0.0",
+    "load-grunt-tasks": "^3.4.1",
+    "uglify-js": "^2.6.2"
+  }
+}

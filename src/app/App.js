@@ -1,0 +1,305 @@
+define([
+    'agrc/widgets/layer/OpacitySlider',
+    'agrc/widgets/map/BaseMap',
+    'agrc/widgets/map/BaseMapSelector',
+
+    'app/config',
+    'app/FindLocation',
+    'app/Identify',
+    'app/LayerVisibilities',
+    'app/PrintMap',
+
+    'bootstrap/js/bootstrap',
+
+    'dijit/Dialog',
+    'dijit/Tooltip',
+    'dijit/_Templated',
+    'dijit/_Widget',
+
+    'dojo/dom',
+    'dojo/query',
+    'dojo/text!app/templates/App.html',
+    'dojo/_base/declare',
+
+    'dojox/charting/action2d/Base',
+    'dojox/charting/Chart',
+    'dojox/charting/Chart2D',
+    'dojox/charting/themes/PlotKit/base',
+    'dojox/fx',
+    'dojox/fx/scroll',
+    'dojox/lang/functional/scan',
+
+    'esri/dijit/HomeButton',
+    'esri/dijit/Popup',
+    'esri/geometry/Point',
+    'esri/layers/ArcGISDynamicMapServiceLayer',
+    'esri/layers/ArcGISTiledMapServiceLayer',
+    'esri/layers/GraphicsLayer',
+
+    'dojox/form/BusyButton'
+], function (
+    OpacitySlider,
+    BaseMap,
+    BaseMapSelector,
+
+    config,
+    FindLocation,
+    Identify,
+    LayerVisibilities,
+    PrintMap,
+
+    bootstrap,
+
+    Dialog,
+    Tooltip,
+    _Templated,
+    _Widget,
+
+    dom,
+    query,
+    template,
+    declare,
+
+    Base,
+    Chart,
+    Chart2D,
+    base,
+    fx,
+    scroll,
+    scan,
+
+    HomeButton,
+    Popup,
+    Point,
+    ArcGISDynamicMapServiceLayer,
+    ArcGISTiledMapServiceLayer,
+    GraphicsLayer
+) {
+    return declare([_Widget, _Templated], {
+        // summary:
+        //        The app object in charge of the app as a whole
+
+        baseClass: 'districts-map',
+
+        // map: BaseMap
+        map: null,
+
+        // districtsLayer: ArcGISDynamicMapServiceLayer
+        districtsLayer: null,
+
+        // labelsLayer: ArcGISDynamicMapServiceLayer
+        labelsLayer: null,
+
+        // identify: Identify
+        identify: null,
+
+        // widgetsInTemplate: [private] Boolean
+        //      Specific to dijit._Templated.
+        widgetsInTemplate: true,
+
+        // templateString: [private] String
+        //      Path to template. See dijit._Templated
+        templateString: template,
+
+        // baseClass: String
+        baseClass: 'districts-map',
+
+        // printMap: PrintMap
+        printMap: null,
+
+        // baseMapSelector: BaseMapSelector
+        baseMapSelector: null,
+
+        // Parameters to constructor
+
+        constructor: function () {
+            // summary:
+            //    Constructor method
+            // params: Object
+            //    Parameters to pass into the widget. Required values include:
+            // div: String|DomNode
+            //    A reference to the div that you want the widget to be created in.
+            console.log('app/App:constructor', arguments);
+        },
+        postCreate: function () {
+            // summary:
+            //    Overrides method of same name in dijit._Widget.
+            // tags:
+            //    private
+            console.log('app/App:postCreate', arguments);
+
+            this.initMap();
+
+            this.initSliders();
+
+            new LayerVisibilities(this);
+
+            this.initFindLocation();
+
+            this.wireEvents();
+        },
+        wireEvents: function () {
+            // summary:
+            //      wires all of the events
+            console.log('app/App:wireEvents', arguments);
+
+            var that = this;
+            query('.pdf-link-small').onclick(function (evt) {
+                that.onPDFLinkClick(evt, that.pdfDialogSmall, that.smallDialogSizer);
+            });
+            query('.pdf-link-large').onclick(function (evt) {
+                that.onPDFLinkClick(evt, that.pdfDialogLarge, that.largeDialogSizer);
+            });
+        },
+        initMap: function () {
+            // summary:
+            //      sets up the map
+            console.log('app/App:initMap', arguments);
+
+            this.identify = new Identify(this);
+
+            var mapOptions = {
+                useDefaultBaseMap: false,
+                includeFullExtentButton: true,
+                infoWindow: this.identify.popup
+            };
+
+            this.map = new BaseMap('map-div', mapOptions);
+
+            this.map.showLoader();
+
+            this.identify.wireEvents();
+
+            var selectorOptions = {
+                map: this.map,
+                id: 'claro'
+            };
+            this.baseMapSelector = new BaseMapSelector(selectorOptions);
+
+            var that = this;
+            this.map.on('load', function () {
+                that.map.disableScrollWheelZoom();
+            });
+
+            this.districtsLayer = new ArcGISDynamicMapServiceLayer(config.urls.districts, {
+                opacity: 0.5,
+                visible: true
+            });
+            this.map.addLayer(this.districtsLayer);
+            this.map.addLoaderToLayer(this.districtsLayer);
+            this.labelsLayer = new ArcGISDynamicMapServiceLayer(config.urls.labels, {
+                visible: true
+            });
+            this.map.addLayer(this.labelsLayer);
+            this.map.addLoaderToLayer(this.labelsLayer);
+        },
+        initSliders: function () {
+            // summary:
+            //      Sets up the layer opacity sliders
+            console.log('app/App:initSliders', arguments);
+
+            var slider = new OpacitySlider({
+                mapServiceLayer: this.districtsLayer
+            }, 'districts-slider');
+            slider.startup();
+        },
+        initFindLocation: function () {
+            // summary:
+            //      Sets up the find address widget
+            console.log('app/App:initFindLocation', arguments);
+
+            // create new graphics layer to prevent conflicts
+            var gLayer = new GraphicsLayer();
+            this.map.addLayer(gLayer);
+
+            var f = new FindLocation({
+                map: this.map,
+                graphicsLayer: gLayer,
+                app: this,
+                wkid: 26912
+            }, 'find-location');
+
+            var that = this;
+            f.on('find', function (result) {
+                var defZoom;
+                var defPan;
+                function identify() {
+                    defZoom.remove();
+                    defPan.remove();
+
+                    var pnt = new Point(result.UTM_X, result.UTM_Y, that.map.spatialReference);
+                    that.identify.identifyPoint(pnt);
+                }
+
+                defZoom = that.map.on('zoom-end', function () {
+                    identify();
+                });
+                defPan = that.map.on('pan-end', function () {
+                    identify();
+                });
+            });
+        },
+        onPDFLinkClick: function (evt, dialog, sizer) {
+            // summary:
+            //      opens the dialog and scrolls to the header
+            // evt: Click event
+            // dialog: dojo dialog
+            // sizer: div
+            console.log('app/App:onPDFLinkClick', arguments);
+
+            var headerID = evt.currentTarget.name;
+
+            evt.preventDefault();
+            evt.stopPropagation();
+
+            dialog.show();
+
+            window.setTimeout(function () {
+                fx.smoothScroll({
+                    node: dom.byId(headerID),
+                    win: sizer
+                }).play();
+            }, 250);
+        },
+        onPrintBtnClick: function () {
+            // summary:
+            //      calls the print web service
+            console.log('app/App:onPrintBtnClick', arguments);
+
+            dom.byId('print-results').innerHTML = '';
+
+            if (!this.printMap) {
+                this.printMap = new PrintMap({
+                    app: this
+                });
+            }
+
+            var that = this;
+            this.printMap.print().then(function () {
+                that.printBtn.cancel();
+            }, function () {
+                alert('There was an error printing your map!');
+                that.printBtn.cancel();
+            });
+        },
+        onMoreInfoClick: function (e) {
+            // summary:
+            //      fires when the user clicks on the more info link in the disclaimer
+            //        shows the more info dialog
+            console.log('app/App:onMoreInfoClick', arguments);
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            this.moreInfoDialog.show();
+        },
+        onMoreInfoOkClick: function () {
+            // summary:
+            //      fires when the user clicks the OK button on the more info dialog
+            //        closes the dialog
+            console.log('app/App:onMoreInfoOkClick', arguments);
+
+            this.moreInfoDialog.hide();
+        }
+    });
+});
