@@ -23,6 +23,7 @@
     "grunt-contrib-watch": "^1.0.0",
     "grunt-dojo": "^1.1.1",
     "grunt-eslint": "^18.0.0",
+    "grunt-replace": "^0.11.0",
     "load-grunt-tasks": "^3.4.1",
     "uglify-js": "^2.6.2"
   }

@@ -24,6 +24,16 @@ var profile = {
             boot: true
         }
     },
+    packages: ['bootstrap', {
+        name: 'spin',
+        resourceTags: {
+            copyOnly: function (filename, mid) {
+                return mid === 'spin/jquery.spin';
+            }
+        },
+        location: './spinjs',
+        main: 'spin'
+    }],
     staticHasFeatures: {
         'dojo-trace-api': 0,
         'dojo-log-api': 0,
@@ -33,6 +43,6 @@ var profile = {
         'dojo-test-sniff': 0
     },
     userConfig: {
-        packages: ['app', 'dijit', 'dojox', 'agrc', 'ijit', 'esri']
+        packages: ['app', 'dojo', 'dijit', 'dojox', 'agrc', 'ijit', 'esri']
     }
 };

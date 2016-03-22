@@ -9,8 +9,6 @@ define([
     'app/LayerVisibilities',
     'app/PrintMap',
 
-    'bootstrap/js/bootstrap',
-
     'dijit/Dialog',
     'dijit/Tooltip',
     'dijit/_Templated',
@@ -47,8 +45,6 @@ define([
     Identify,
     LayerVisibilities,
     PrintMap,
-
-    bootstrap,
 
     Dialog,
     Tooltip,

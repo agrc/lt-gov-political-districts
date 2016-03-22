@@ -16,7 +16,7 @@ module.exports = function (grunt) {
         '!stubmodule/**',
         '!util/**'
     ];
-    var deployDir = 'SGID';
+    var deployDir = 'LtGovVotingDistricts_Widget';
     var jsAppFiles = 'src/app/**/*.js';
     var gruntFile = 'GruntFile.js';
     var jsFiles = [
@@ -77,7 +77,20 @@ module.exports = function (grunt) {
         },
         copy: {
             main: {
-                files: [{expand: true, cwd: 'src/', src: ['*.html'], dest: 'dist/'}]
+                files: [{
+                    expand: true,
+                    cwd: 'src/',
+                    src: ['*.html', 'images/*.*'],
+                    dest: 'dist/'
+                }]
+            },
+            localBuild: {
+                files: [{
+                    expand: true,
+                    cwd: 'src/',
+                    src: 'js/agrc_map.js',
+                    dest: 'dist/'
+                }]
             }
         },
         dojo: {
@@ -105,6 +118,26 @@ module.exports = function (grunt) {
             },
             main: {
                 src: jsFiles
+            }
+        },
+        replace: {
+            stage: {
+                options: {
+                    patterns: [{
+                        match: 'build',
+                        replacement: 'stage'
+                    }]
+                },
+                files: [{cwd: 'src', expand: true, src: 'js/agrc_map.js', dest: 'dist/'}]
+            },
+            prod: {
+                options: {
+                    patterns: [{
+                        match: 'build',
+                        replacement: 'prod'
+                    }]
+                },
+                files: [{cwd: 'src', expand: true, src: 'src/js/agrc_map.js', dest: 'dist/'}]
             }
         },
         secrets: secrets,
@@ -172,6 +205,8 @@ module.exports = function (grunt) {
         'watch'
     ]);
     grunt.registerTask('build-prod', [
+        'clean:build',
+        'replace:prod',
         'dojo:prod',
         'copy:main'
     ]);
@@ -181,6 +216,8 @@ module.exports = function (grunt) {
         'sftp:prod'
     ]);
     grunt.registerTask('build-stage', [
+        'clean:build',
+        'replace:stage',
         'dojo:stage',
         'copy:main'
     ]);
@@ -189,5 +226,11 @@ module.exports = function (grunt) {
         'compress:main',
         'sftp:stage',
         'sshexec:stage'
+    ]);
+    grunt.registerTask('build-local', [
+        'clean:build',
+        'dojo:stage',
+        'copy:localBuild',
+        'copy:main'
     ]);
 };

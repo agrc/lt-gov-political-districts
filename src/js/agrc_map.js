@@ -1,29 +1,24 @@
-(function() {
-	var head = document.getElementsByTagName("head").item(0);
+(function () {
+    var build = '@@build'; // set by grunt-replace
+    var base;
+    if (build === 'prod') {
+        base = 'http://mapserv.utah.gov/LtGovVotingDistricts_Widget/';
+    } else if (build === 'stage') {
+        base = 'http://test.mapserv.utah.gov/LtGovVotingDistricts_Widget/';
+    } else {
+        base = '';
+    }
+    var head = document.getElementsByTagName('head').item(0);
 
-	function loadCss(href) {
-		var link = document.createElement("link");
-		link.rel = "stylesheet";
-		link.type = "text/css";
-		link.href = href;
-		head.appendChild(link);
-	}
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = base + 'app/css/App.css';
+    head.appendChild(link);
 
-	function loadJavaScript(src) {
-		var script = document.createElement("script");
-		script.type = "text/javascript";
-		script.src = src;
-		head.appendChild(script);
-	}
-
-	function init() {
-		loadJavaScript('app/run.js');
-	}
-
-	loadCss('app/css/App.css');
-
-	window.dojoConfig = {
-		addOnLoad: init
-	};
-	loadJavaScript('dojo/dojo.js');
-})();
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = base + 'dojo/dojo.js';
+    script.setAttribute('data-dojo-config', 'deps: ["app/run"]');
+    head.appendChild(script);
+}());

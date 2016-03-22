@@ -14,10 +14,6 @@
             'sherlock',
             'xstyle',
             {
-                name: 'jquery',
-                location: 'jquery/dist',
-                main: 'jquery'
-            }, {
                 name: 'spin',
                 location: './spinjs',
                 main: 'spin'
@@ -29,13 +25,9 @@
             }
         }
     }, [
-        'jquery/dist/jquery',
         'app/App',
         'dojo/domReady!'
-    ], function (
-        $,
-        App
-    ) {
+    ], function (App) {
         window.mapapp = new App({}, 'agrc-map');
     });
 }());

@@ -14,7 +14,6 @@
   "dependencies": {
     "esri": "arcgis-js-api#~3.15.0",
     "agrc": "agrc-widgets#908a25c07eec3577fdf3f52d61084a8c9876c9fc",
-    "jquery": "2.2.0",
     "sherlock": "agrc-sherlock#~1.0.0"
   },
   "resolutions": {

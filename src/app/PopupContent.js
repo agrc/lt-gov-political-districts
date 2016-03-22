@@ -2,14 +2,14 @@ define([
     'dijit/_Templated',
     'dijit/_Widget',
 
-    'dojo/_base/declare',
-    'dojo/text!app/templates/PopupContent.html'
+    'dojo/text!app/templates/PopupContent.html',
+    'dojo/_base/declare'
 ], function (
     _Templated,
     _Widget,
 
-    declare,
-    template
+    template,
+    declare
 ) {
     return declare([_Widget, _Templated], {
         // summary:
@@ -57,12 +57,13 @@ define([
             //        sets up the tooltips
             console.log('app/PopupContent:initTooltips', arguments);
 
-            $('.popup-row', this.domNode).tooltip({
-                title: 'click to zoom',
-                placement: 'right',
-                container: 'body',
-                delay: { show: 2000, hide: 50 }
-            });
+            // not worth loading a second jquery
+            // $('.popup-row', this.domNode).tooltip({
+            //     title: 'click to zoom',
+            //     placement: 'right',
+            //     container: 'body',
+            //     delay: { show: 2000, hide: 50 }
+            // });
         },
         wireEvents: function () {
             // summary:
