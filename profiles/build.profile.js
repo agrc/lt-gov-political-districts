@@ -13,6 +13,7 @@ var profile = {
             include: [
                 'dojo/i18n',
                 'dojo/domReady',
+                'dojo/has',
                 'app/run',
                 'app/App',
                 'dojox/gfx/path',

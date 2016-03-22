@@ -1,12 +1,14 @@
 (function () {
     var build = '@@build'; // set by grunt-replace
     var base;
+    var baseUrl;
     if (build === 'prod') {
-        base = 'http://mapserv.utah.gov/LtGovVotingDistricts_Widget/';
+        base = baseUrl = 'http://mapserv.utah.gov/LtGovVotingDistricts_Widget/';
     } else if (build === 'stage') {
-        base = 'http://test.mapserv.utah.gov/LtGovVotingDistricts_Widget/';
+        base = baseUrl = 'http://test.mapserv.utah.gov/LtGovVotingDistricts_Widget/';
     } else {
         base = '';
+        baseUrl = './dojo/';
     }
     var head = document.getElementsByTagName('head').item(0);
 
@@ -19,6 +21,6 @@
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = base + 'dojo/dojo.js';
-    script.setAttribute('data-dojo-config', 'deps: ["app/run"]');
+    script.setAttribute('data-dojo-config', 'deps: ["app/run"], baseUrl: "' + baseUrl + '"');
     head.appendChild(script);
 }());
