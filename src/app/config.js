@@ -7,7 +7,7 @@ define([
     var apiKey;
     if (has('agrc-build') === 'prod') {
         server = 'http://mapserv.utah.gov';
-        apiKey = 'AGRC-70F8D39B163860';
+        apiKey = 'AGRC-81AF0E22246112';
     } else {
         server = 'http://localhost';
         apiKey = 'AGRC-63E1FF17767822';
