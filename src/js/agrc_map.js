@@ -3,9 +3,9 @@
     var base;
     var baseUrl;
     if (build === 'prod') {
-        base = baseUrl = 'http://mapserv.utah.gov/LtGovVotingDistricts_Widget/';
+        base = baseUrl = 'https://mapserv.utah.gov/LtGovVotingDistricts_Widget/';
     } else if (build === 'stage') {
-        base = baseUrl = 'http://test.mapserv.utah.gov/LtGovVotingDistricts_Widget/';
+        base = baseUrl = 'https://test.mapserv.utah.gov/LtGovVotingDistricts_Widget/';
     } else {
         base = '';
         baseUrl = './dojo/';
