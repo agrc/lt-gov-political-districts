@@ -61,6 +61,8 @@ define([
         // sherlock: MagicZoom
         sherlock: null,
 
+        zoomLevel: 17,
+
         postCreate: function () {
             // summary:
             //      overrides function in inherited class
@@ -78,7 +80,8 @@ define([
             var provider = new WebAPI(
                 config.apiKey,
                 'SGID10.BOUNDARIES.ZipCodes',
-                'ZIP5'
+                'ZIP5',
+                {wkid: this.wkid}
             );
             this.sherlock = new Sherlock({
                 provider: provider,

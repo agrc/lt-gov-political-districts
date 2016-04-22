@@ -223,7 +223,7 @@ define([
                 map: this.map,
                 graphicsLayer: gLayer,
                 app: this,
-                wkid: 26912
+                wkid: 3857
             }, 'find-location');
 
             var that = this;
