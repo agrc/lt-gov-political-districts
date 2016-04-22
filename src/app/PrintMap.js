@@ -57,7 +57,7 @@ define([
 
             this.map = this.app.map;
 
-            this.task = new PrintTask(config.urls.print);
+            this.task = new PrintTask(config.urls.printProxy);
 
             this.wireEvents();
         },
@@ -83,6 +83,9 @@ define([
             };
             params.map = this.map;
             params.template = template;
+            params.extraParameters = {
+                'ExportWebMapService_URL': config.urls.exportWebMap
+            };
 
             return this.task.execute(params);
         },

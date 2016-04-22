@@ -30,6 +30,7 @@ define([
 
     var config = {
         urls: {
+            printProxy: server + '/arcgis/rest/services/PrintProxy/GPServer/PrintProxy',
             print: server + baseUrl + 'ExportWebMap/GPServer/Export%20Web%20Map',
             districts: server + baseUrl + 'Districts/MapServer',
             labels: server + baseUrl + 'Labels/MapServer'
