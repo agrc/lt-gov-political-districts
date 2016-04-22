@@ -15,6 +15,7 @@ src/favico.js/
 src/jasmine-favicon-reporter/
 src/jasmine-jsreporter/
 src/jquery/
+src/layer-selector/
 src/put-selector/
 src/sherlock/
 src/spinjs/

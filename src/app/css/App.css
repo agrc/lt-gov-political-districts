@@ -2,10 +2,10 @@
 @import url('../../dijit/themes/claro/claro.css');
 @import url('../../dojox/form/resources/BusyButton.css');
 @import url("../../agrc/resources/map/BaseMap.css");
-@import url("../../agrc/resources/map/BaseMapSelector.css");
 @import url("../../agrc/resources/layer/OpacitySlider.css");
 @import url("../../agrc/resources/locate/FindAddress.css");
 @import url("../../bootstrap/css/bootstrap.css");
+@import url('../../layer-selector/resources/LayerSelector.css');
 @import url("FindLocation.css");
 @import url("PopupContent.css");
 @import url("MagicZoom.css");

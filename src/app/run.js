@@ -9,6 +9,7 @@
             'dojo',
             'dojox',
             'esri',
+            'layer-selector',
             'put-selector',
             'sherlock',
             'xstyle',

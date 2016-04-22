@@ -1,7 +1,6 @@
 define([
     'agrc/widgets/layer/OpacitySlider',
     'agrc/widgets/map/BaseMap',
-    'agrc/widgets/map/BaseMapSelector',
 
     'app/config',
     'app/FindLocation',
@@ -29,16 +28,18 @@ define([
 
     'esri/dijit/HomeButton',
     'esri/dijit/Popup',
+    'esri/geometry/Extent',
     'esri/geometry/Point',
     'esri/layers/ArcGISDynamicMapServiceLayer',
     'esri/layers/ArcGISTiledMapServiceLayer',
     'esri/layers/GraphicsLayer',
 
+    'layer-selector/LayerSelector',
+
     'dojox/form/BusyButton'
 ], function (
     OpacitySlider,
     BaseMap,
-    BaseMapSelector,
 
     config,
     FindLocation,
@@ -66,10 +67,13 @@ define([
 
     HomeButton,
     Popup,
+    Extent,
     Point,
     ArcGISDynamicMapServiceLayer,
     ArcGISTiledMapServiceLayer,
-    GraphicsLayer
+    GraphicsLayer,
+
+    LayerSelector
 ) {
     return declare([_Widget, _Templated], {
         // summary:
@@ -102,9 +106,6 @@ define([
 
         // printMap: PrintMap
         printMap: null,
-
-        // baseMapSelector: BaseMapSelector
-        baseMapSelector: null,
 
         // Parameters to constructor
 
@@ -157,7 +158,16 @@ define([
             var mapOptions = {
                 useDefaultBaseMap: false,
                 includeFullExtentButton: true,
-                infoWindow: this.identify.popup
+                infoWindow: this.identify.popup,
+                extent: new Extent({
+                    xmax: -11762120.612131765,
+                    xmin: -13074391.513731329,
+                    ymax: 5225035.106177688,
+                    ymin: 4373832.359194187,
+                    spatialReference: {
+                        wkid: 3857
+                    }
+                })
             };
 
             this.map = new BaseMap('map-div', mapOptions);
@@ -166,16 +176,17 @@ define([
 
             this.identify.wireEvents();
 
-            var selectorOptions = {
-                map: this.map,
-                id: 'claro'
-            };
-            this.baseMapSelector = new BaseMapSelector(selectorOptions);
-
             var that = this;
             this.map.on('load', function () {
                 that.map.disableScrollWheelZoom();
             });
+
+            var selector = new LayerSelector({
+                map: this.map,
+                quadWord: config.quadWord,
+                baseLayers: ['Lite', 'Hybrid']
+            });
+            selector.startup();
 
             this.districtsLayer = new ArcGISDynamicMapServiceLayer(config.urls.districts, {
                 opacity: 0.5,
