@@ -10,10 +10,14 @@ define([
     var quadWord;
     if (has('agrc-build') === 'prod') {
         server = 'https://mapserv.utah.gov';
+
+        // for elections.utah.gov
         apiKey = 'AGRC-81AF0E22246112';
-        quadWord = 'alfred-plaster-crystal-dexter';
+        quadWord = 'andrea-permit-weekend-cable';
     } else if (has('agrc-build') === 'stage') {
-        // quadWord = 'opera-event-little-pinball';
+        // for test.mapserv.utah.gov
+        quadWord = 'opera-event-little-pinball';
+        apiKey = 'AGRC-AC122FA9671436';
     } else {
         xhr(require.baseUrl + 'secrets.json', {
             handleAs: 'json',
