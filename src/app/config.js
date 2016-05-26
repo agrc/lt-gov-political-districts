@@ -1,9 +1,13 @@
 define([
     'dojo/has',
-    'dojo/request/xhr'
+    'dojo/request/xhr',
+
+    'esri/config'
 ], function (
     has,
-    xhr
+    xhr,
+
+    esriConfig
 ) {
     var server;
     var apiKey;
@@ -42,6 +46,8 @@ define([
         apiKey: apiKey,
         quadWord: quadWord
     };
+
+    esriConfig.defaults.io.corsEnabledServers.push(server);
 
     return config;
 });

@@ -84,7 +84,7 @@ define([
             params.map = this.map;
             params.template = template;
             params.extraParameters = {
-                'ExportWebMapService_URL': config.urls.exportWebMap
+                'ExportWebMapService_URL': config.urls.print
             };
 
             return this.task.execute(params);
