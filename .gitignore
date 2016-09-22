@@ -21,3 +21,5 @@ src/sherlock/
 src/spinjs/
 src/util/
 src/xstyle/
+
+*.pyc
