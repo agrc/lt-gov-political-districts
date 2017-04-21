@@ -14,9 +14,8 @@ class LtGovPallet(Pallet):
     def build(self, config):
         self.arcgis_services = [(r'LtGovPoliticalDistricts/Districts', 'MapServer'), (r'LtGovPoliticalDistricts/Labels', 'MapServer')]
         self.sgid = join(self.garage, 'SGID10.sde')
-        self.staging = r'C:\\Scheduled\staging'
 
-        self.political = join(self.staging, 'political.gdb')
+        self.political = join(self.staging_rack, 'political.gdb')
 
         self.copy_data = [self.political]
 
