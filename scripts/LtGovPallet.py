@@ -13,7 +13,7 @@ from os.path import join
 class LtGovPallet(Pallet):
     def build(self, config):
         self.arcgis_services = [(r'LtGovPoliticalDistricts/Districts', 'MapServer'), (r'LtGovPoliticalDistricts/Labels', 'MapServer')]
-        self.sgid = join(self.garage, 'SGID10.sde')
+        self.sgid = join(self.garage, 'SGID.sde')
 
         self.political = join(self.staging_rack, 'political.gdb')
 
