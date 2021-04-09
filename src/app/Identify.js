@@ -61,8 +61,8 @@ define([
         // marker: SimpleMarkerSymbol
         //        The symbol used to mark the identify location
         this.marker = new SimpleMarkerSymbol()
-			.setStyle(SimpleMarkerSymbol.STYLE_DIAMOND)
-			.setColor(new Color([255, 0, 0, 0.5]));
+            .setStyle(SimpleMarkerSymbol.STYLE_DIAMOND)
+            .setColor(new Color([255, 0, 0, 0.5]));
 
         this.initPopup();
 
