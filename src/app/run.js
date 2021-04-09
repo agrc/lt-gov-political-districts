@@ -9,6 +9,7 @@
             'dijit',
             'dojo',
             'dojox',
+            'dstore',
             'esri',
             'layer-selector',
             'moment',

@@ -184,6 +184,34 @@ module.exports = function (grunt) {
                 }
             }
         },
+        uglify: {
+            options: {
+                preserveComments: false,
+                sourceMap: true,
+                compress: {
+                    drop_console: true,
+                    passes: 2,
+                    dead_code: true
+                }
+            },
+            stage: {
+                options: {
+                    compress: {
+                        drop_console: false
+                    }
+                },
+                src: ['dist/dojo/dojo.js'],
+                dest: 'dist/dojo/dojo.js'
+            },
+            prod: {
+                files: [{
+                    expand: true,
+                    cwd: 'dist',
+                    src: ['**/*.js', '!proj4/**/*.js'],
+                    dest: 'dist'
+                }]
+            }
+        },
         watch: {
             src: {
                 files: jsFiles.concat(otherFiles),
@@ -201,6 +229,7 @@ module.exports = function (grunt) {
         'clean:build',
         'replace:prod',
         'dojo:prod',
+        'uglify:prod',
         'copy:main'
     ]);
     grunt.registerTask('deploy-prod', [
@@ -213,6 +242,7 @@ module.exports = function (grunt) {
         'clean:build',
         'replace:stage',
         'dojo:stage',
+        'uglify:stage',
         'copy:main'
     ]);
     grunt.registerTask('deploy-stage', [

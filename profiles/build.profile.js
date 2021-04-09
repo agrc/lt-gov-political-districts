@@ -4,9 +4,8 @@ var profile = {
     action: 'release',
     cssOptimize: 'comments',
     mini: true,
-    optimize: 'uglify',
-    layerOptimize: 'uglify',
-    stripConsole: 'all',
+    optimize: false,
+    layerOptimize: false,
     selectorEngine: 'acme',
     layers: {
         'dojo/dojo': {
@@ -34,6 +33,19 @@ var profile = {
         },
         location: './spinjs',
         main: 'spin'
+    }, {
+        name: 'moment',
+        location: 'moment',
+        main: 'moment',
+        trees: [
+            // don't bother with .hidden, tests, min, src, and templates
+            ['.', '.', /(\/\.)|(~$)|(test|txt|src|min|templates)/]
+        ],
+        resourceTags: {
+            amd: function amd(filename) {
+                return /\.js$/.test(filename);
+            }
+        }
     }],
     staticHasFeatures: {
         'dojo-trace-api': 0,
