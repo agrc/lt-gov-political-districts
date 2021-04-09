@@ -6,7 +6,9 @@ src/agrc-jasmine-matchers/
 src/agrc/
 src/components-jasmine/
 src/dgrid/
+src/dgrid1/
 src/dijit/
+src/dijit-themes/
 src/dojo/
 src/dojox/
 src/dstore/
@@ -16,6 +18,7 @@ src/jasmine-favicon-reporter/
 src/jasmine-jsreporter/
 src/jquery/
 src/layer-selector/
+src/moment/
 src/put-selector/
 src/sherlock/
 src/spinjs/
