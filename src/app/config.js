@@ -39,7 +39,6 @@ define([
     var config = {
         urls: {
             printProxy: 'https://print.agrc.utah.gov/19/arcgis/rest/services/GPServer/export',
-            print: server + baseUrl + 'ExportWebMap/GPServer/Export%20Web%20Map',
             districts: server + baseUrl + 'Districts/MapServer',
             labels: server + baseUrl + 'Labels/MapServer'
         },
