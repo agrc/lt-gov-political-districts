@@ -1,22 +1,6 @@
 module.exports = function (grunt) {
     require('load-grunt-tasks')(grunt);
 
-    var deployFiles = [
-        '**',
-        '!**/*.uncompressed.js',
-        '!**/*consoleStripped.js',
-        '!**/bootstrap/less/**',
-        '!**/bootstrap/test-infra/**',
-        '!**/tests/**',
-        '!build-report.txt',
-        '!components-jasmine/**',
-        '!favico.js/**',
-        '!jasmine-favicon-reporter/**',
-        '!jasmine-jsreporter/**',
-        '!stubmodule/**',
-        '!util/**'
-    ];
-    var deployDir = 'wwwroot/LtGovVotingDistricts_Widget';
     var jsAppFiles = 'src/app/**/*.js';
     var gruntFile = 'GruntFile.js';
     var jsFiles = [
@@ -32,47 +16,15 @@ module.exports = function (grunt) {
         'src/js/agrc_map.js'
     ];
 
-    var secrets;
-    try {
-        secrets = grunt.file.readJSON('secrets.json');
-        // sauceConfig.username = secrets.sauce_name;
-        // sauceConfig.key = secrets.sauce_key;
-    } catch (e) {
-        // swallow for build server
-
-        // still print a message so you can catch bad syntax in the secrets file.
-        grunt.log.write(e);
-
-        secrets = {
-            stage: {
-                host: '',
-                username: '',
-                password: ''
-            },
-            prod: {
-                host: '',
-                username: '',
-                password: ''
-            }
-        };
-    }
-
     grunt.initConfig({
         clean: {
-            build: ['dist'],
-            deploy: ['deploy']
+            build: ['dist']
         },
-        compress: {
+        connect: {
             main: {
                 options: {
-                    archive: 'deploy/deploy.zip'
-                },
-                files: [{
-                    src: deployFiles,
-                    dest: './',
-                    cwd: 'dist/',
-                    expand: true
-                }]
+                    port: 8080
+                }
             }
         },
         copy: {
@@ -140,50 +92,6 @@ module.exports = function (grunt) {
                 files: [{cwd: 'src', expand: true, src: 'js/agrc_map.js', dest: 'dist/'}]
             }
         },
-        secrets: secrets,
-        sftp: {
-            stage: {
-                files: {
-                    './': 'deploy/deploy.zip'
-                },
-                options: {
-                    host: '<%= secrets.stageHost %>'
-                }
-            },
-            prod: {
-                files: {
-                    './': 'deploy/deploy.zip'
-                },
-                options: {
-                    host: '<%= secrets.prodHost %>'
-                }
-            },
-            options: {
-                path: './' + deployDir + '/',
-                srcBasePath: 'deploy/',
-                username: '<%= secrets.username %>',
-                password: '<%= secrets.password %>',
-                showProgress: true
-            }
-        },
-        sshexec: {
-            options: {
-                username: '<%= secrets.username %>',
-                password: '<%= secrets.password %>'
-            },
-            stage: {
-                command: ['cd ' + deployDir, 'unzip -o deploy.zip', 'rm deploy.zip'].join(';'),
-                options: {
-                    host: '<%= secrets.stageHost %>'
-                }
-            },
-            prod: {
-                command: ['cd ' + deployDir, 'unzip -o deploy.zip', 'rm deploy.zip'].join(';'),
-                options: {
-                    host: '<%= secrets.prodHost %>'
-                }
-            }
-        },
         uglify: {
             options: {
                 preserveComments: false,
@@ -223,6 +131,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', [
         'eslint',
+        'connect',
         'watch'
     ]);
     grunt.registerTask('build-prod', [
@@ -232,24 +141,12 @@ module.exports = function (grunt) {
         'uglify:prod',
         'copy:main'
     ]);
-    grunt.registerTask('deploy-prod', [
-        'clean:deploy',
-        'compress:main',
-        'sftp:prod',
-        'sshexec:prod'
-    ]);
     grunt.registerTask('build-stage', [
         'clean:build',
         'replace:stage',
         'dojo:stage',
         'uglify:stage',
         'copy:main'
-    ]);
-    grunt.registerTask('deploy-stage', [
-        'clean:deploy',
-        'compress:main',
-        'sftp:stage',
-        'sshexec:stage'
     ]);
     grunt.registerTask('build-local', [
         'clean:build',

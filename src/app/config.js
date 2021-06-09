@@ -19,9 +19,9 @@ define([
         apiKey = 'AGRC-81AF0E22246112';
         quadWord = 'andrea-permit-weekend-cable';
     } else if (has('agrc-build') === 'stage') {
-        // for test.mapserv.utah.gov
-        quadWord = 'opera-event-little-pinball';
-        apiKey = 'AGRC-AC122FA9671436';
+        // for *.dev.utah.gov
+        apiKey = 'AGRC-FE1B257E901672';
+        quadWord = 'wedding-tactic-enrico-yes';
     } else {
         xhr(require.baseUrl + 'secrets.json', {
             handleAs: 'json',
