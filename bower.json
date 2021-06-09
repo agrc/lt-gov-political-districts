@@ -13,7 +13,7 @@
   "private": true,
   "dependencies": {
     "esri": "arcgis-js-api#~3.35.0",
-    "agrc": "agrc-widgets#~4.2",
+    "agrc": "agrc-widgets#~4.2.0",
     "sherlock": "agrc-sherlock#~1.0.0",
     "layer-selector": "agrc-layer-selector#~0.4.0",
     "dijit-themes": "https://github.com/dojo/dijit-themes.git#1.14.0"
