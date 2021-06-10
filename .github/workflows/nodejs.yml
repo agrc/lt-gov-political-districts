@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: dev
-      url: https://TODO
+      url: https://politicaldistricts.dev.utah.gov
     if: github.ref != 'refs/heads/main'
 
     steps:
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: prod
-      url: https://TODO
+      url: https://politicaldistricts.ugrc.utah.gov
     if: github.ref == 'refs/heads/main'
 
     steps:
