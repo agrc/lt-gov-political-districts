@@ -1,15 +1,14 @@
 (function () {
-    var build = '@@build'; // set by grunt-replace
-    var base;
-    var baseUrl;
-    if (build === 'prod') {
-        base = baseUrl = 'https://mapserv.utah.gov/LtGovVotingDistricts_Widget/';
-    } else if (build === 'stage') {
-        base = baseUrl = 'https://test.mapserv.utah.gov/LtGovVotingDistricts_Widget/';
-    } else {
-        base = '';
-        baseUrl = './dojo/';
-    }
+    // dev
+    // var base = baseUrl = 'https://politicaldistricts.dev.utah.gov/';
+
+    // prod
+    // var base = baseUrl = 'https://politicaldistricts.agrc.utah.gov/';
+
+    // same host, use relative
+    var base = '';
+    var baseUrl = './dojo/';
+
     var head = document.getElementsByTagName('head').item(0);
 
     var link = document.createElement('link');
