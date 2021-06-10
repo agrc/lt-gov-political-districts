@@ -19,6 +19,8 @@ define([
         apiKey = 'AGRC-81AF0E22246112';
         quadWord = 'andrea-permit-weekend-cable';
     } else if (has('agrc-build') === 'stage') {
+        server = 'https://mapserv.utah.gov';
+
         // for *.dev.utah.gov
         apiKey = 'AGRC-FE1B257E901672';
         quadWord = 'wedding-tactic-enrico-yes';
