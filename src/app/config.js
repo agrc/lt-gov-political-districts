@@ -49,6 +49,7 @@ define([
     };
 
     esriConfig.defaults.io.corsEnabledServers.push(server);
+    esriConfig.defaults.io.corsEnabledServers.push('discover.agrc.utah.gov');
 
     return config;
 });
