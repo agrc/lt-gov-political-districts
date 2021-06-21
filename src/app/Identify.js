@@ -122,7 +122,7 @@ define([
 
         this.identifyPoint(evt.mapPoint);
 
-        var g = new Graphic(evt.mapPoint, this.marker, {}, {});
+        var g = new Graphic(evt.mapPoint, this.marker);
         this.app.map.graphics.add(g);
     };
 
