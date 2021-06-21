@@ -3,7 +3,7 @@
     // var baseUrl = 'https://politicaldistricts.dev.utah.gov/';
 
     // prod
-    // var baseUrl = 'https://politicaldistricts.agrc.utah.gov/';
+    // var baseUrl = 'https://politicaldistricts.ugrc.utah.gov/';
 
     // same host, use relative
     var baseUrl = './';
@@ -19,6 +19,6 @@
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = baseUrl + 'dojo/dojo.js';
-    script.setAttribute('data-dojo-config', 'deps: ["app/run"], baseUrl: "' + baseUrl + '"');
+    script.setAttribute('data-dojo-config', 'deps: ["app/run"]');
     head.appendChild(script);
 }());
