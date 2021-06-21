@@ -157,7 +157,7 @@ define([
 
             var mapOptions = {
                 useDefaultBaseMap: false,
-                includeFullExtentButton: true,
+                // includeFullExtentButton: true, // doesn't work at this version of the widget, but don't care
                 infoWindow: this.identify.popup,
                 extent: new Extent({
                     xmax: -11762120.612131765,
@@ -171,8 +171,6 @@ define([
             };
 
             this.map = new BaseMap('map-div', mapOptions);
-
-            this.map.showLoader();
 
             this.identify.wireEvents();
 

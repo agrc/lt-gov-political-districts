@@ -34,7 +34,8 @@ define([
         }, function () {
             throw 'Error getting secrets!';
         });
-        server = 'http://localhost';
+        // server = 'http://localhost';
+        server = 'https://mapserv.utah.gov';
     }
     var baseUrl = '/arcgis/rest/services/LtGovPoliticalDistricts/';
 
@@ -50,6 +51,7 @@ define([
 
     esriConfig.defaults.io.corsEnabledServers.push(server);
     esriConfig.defaults.io.corsEnabledServers.push('discover.agrc.utah.gov');
+    esriConfig.defaults.io.corsEnabledServers.push('api.mapserv.utah.gov');
 
     return config;
 });
