@@ -60,8 +60,7 @@ module.exports = function (grunt) {
                 dojo: 'src/dojo/dojo.js',
                 load: 'build',
                 releaseDir: '../dist',
-                require: 'src/app/run.js',
-                basePath: './src'
+                require: 'src/app/run.js'
             }
         },
         eslint: {

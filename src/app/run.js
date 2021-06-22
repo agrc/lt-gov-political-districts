@@ -1,5 +1,6 @@
 (function () {
     var config = {
+        baseUrl: './',
         packages: [
             'agrc',
             'app',
@@ -28,9 +29,6 @@
             }
         }
     };
-    if (require.baseUrl === './dojo/') {
-        config.baseUrl = './';
-    }
     require(config, [
         'app/App',
         'dojo/domReady!'
