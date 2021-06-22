@@ -15,8 +15,8 @@ define([
     if (has('agrc-build') === 'prod') {
         server = 'https://mapserv.utah.gov';
 
-        // for elections.utah.gov
-        apiKey = 'AGRC-81AF0E22246112';
+        // for *.utah.gov (needs to match elections.utah.gov & politicaldistricts.ugrc.utah.gov)
+        apiKey = 'AGRC-D3CDE591211690';
         quadWord = 'andrea-permit-weekend-cable';
     } else if (has('agrc-build') === 'stage') {
         server = 'https://mapserv.utah.gov';
