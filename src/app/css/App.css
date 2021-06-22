@@ -8,7 +8,6 @@
 @import url('../../layer-selector/resources/LayerSelector.css');
 @import url("FindLocation.css");
 @import url("PopupContent.css");
-@import url("MagicZoom.css");
 
 .districts-map #map-div {
     height: 100%;
@@ -45,7 +44,6 @@
     font-size: 1.0em;
     margin: 2px 0;
     float: left;
-    padding: 0;
 }
 .btn-container {
     margin-top: 9px;

@@ -15,19 +15,13 @@
             'layer-selector',
             'moment',
             'put-selector',
-            'sherlock',
             'xstyle',
             {
                 name: 'spin',
                 location: './spinjs',
                 main: 'spin'
             }
-        ],
-        map: {
-            sherlock: {
-                'spinjs/spin': 'spin'
-            }
-        }
+        ]
     };
     require(config, [
         'app/App',

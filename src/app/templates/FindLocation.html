@@ -9,11 +9,8 @@
                         Address</div>
                 </td>
                 <td class="text-box-cell">
-                    <div data-dojo-attach-point="txtAddress"
-                        data-dojo-type="dijit/form/ValidationTextBox"
-                        data-dojo-attach-event='keyup: _checkEnter'
-                        class="text-box" trim="true" propercase="false" value='' placeholder="optional">
-                    </div>
+                    <input data-dojo-attach-point="txtAddress" type="text" id="${id}_inputAddress"
+                        class="text-box" value='' />
                 </td>
             </tr>
             <tr>
@@ -21,26 +18,15 @@
                     Zip
                 </td>
                 <td class="text-box-cell">
-                    <div data-dojo-attach-point="txtZone" class="text-box"
-                        data-dojo-attach-event='keyup: updateMagicZoom'
-                        data-dojo-type="dijit/form/ValidationTextBox"
-                        value=""></div>
-                    <div class="">
-                    	<div id="magic-zoom"></div>
-                    </div>
+                    <input data-dojo-attach-point="txtZone" type="text" id="${id}_input_zone"
+                        class="text-box" value="" />
                 </td>
             </tr>
             <tr>
                 <td>
                 </td>
                 <td class="btn-cell">
-                    <button type="submit" data-dojo-attach-point="btnGeocode"
-                        data-dojo-type="dojox/form/BusyButton"
-                        class="btn"
-                        busyLabel="Locating..." disabled>
-                        Find
-                    </button>
-                    <!-- <button class="find-btn" type="submit" data-dojo-attach-point="btn_geocode">Find</button> -->
+                    <button type="submit" data-dojo-attach-point="btnGeocode" class="btn btn-default">Find</button>
                     <span data-dojo-attach-point='errorMsg' class="error-msg">No Match Found!</span>
                 </td>
             </tr>
