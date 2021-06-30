@@ -4,7 +4,7 @@
     var baseUrl;
     if (build === 'prod') {
         base = baseUrl = 'https://mapserv.utah.gov/LtGovVotingDistricts_Widget/';
-    } else if (build === 'stage') {
+    } else if (build === 'staging') {
         base = baseUrl = 'https://test.mapserv.utah.gov/LtGovVotingDistricts_Widget/';
     } else {
         base = '';
