@@ -1,6 +1,5 @@
 (function () {
     var config = {
-        baseUrl: './',
         packages: [
             'agrc',
             'app',
