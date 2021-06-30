@@ -1,6 +1,15 @@
+/* global dojo */
 (function () {
+    var baseUrl = './';
+
+    if (dojo.build === 'staging') {
+        baseUrl = 'https://politicaldistricts.dev.utah.gov/';
+    } else if (dojo.build === 'prod') {
+        baseUrl = 'https://politicaldistricts.ugrc.utah.gov/';
+    }
+
     var config = {
-        baseUrl: './',
+        baseUrl: baseUrl,
         packages: [
             'agrc',
             'app',
