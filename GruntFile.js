@@ -75,8 +75,8 @@ module.exports = function (grunt) {
             stage: {
                 options: {
                     patterns: [{
-                        match: 'build',
-                        replacement: 'stage'
+                        match: 'dev',
+                        replacement: 'staging'
                     }]
                 },
                 files: [{cwd: 'src', expand: true, src: 'js/agrc_map.js', dest: 'dist/'}]
@@ -84,7 +84,7 @@ module.exports = function (grunt) {
             prod: {
                 options: {
                     patterns: [{
-                        match: 'build',
+                        match: 'dev',
                         replacement: 'prod'
                     }]
                 },

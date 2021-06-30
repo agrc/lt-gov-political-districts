@@ -1,12 +1,12 @@
 (function () {
-    // dev
-    // var baseUrl = 'https://politicaldistricts.dev.utah.gov/';
-
-    // prod
-    // var baseUrl = 'https://politicaldistricts.ugrc.utah.gov/';
-
-    // same host, use relative
+    var build = '@@dev';
     var baseUrl = './';
+
+    if (build === 'staging') {
+        baseUrl = 'https://politicaldistricts.dev.utah.gov/';
+    } else if (build === 'prod') {
+        baseUrl = 'https://politicaldistricts.ugrc.utah.gov/';
+    }
 
     var head = document.getElementsByTagName('head').item(0);
 
