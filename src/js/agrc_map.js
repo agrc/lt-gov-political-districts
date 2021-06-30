@@ -19,6 +19,6 @@
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = baseUrl + 'dojo/dojo.js';
-    script.setAttribute('data-dojo-config', 'deps: ["app/run"], build: "' + build + '"');
+    script.setAttribute('data-dojo-config', 'deps: ["app/run"], baseUrl: "' + baseUrl + '/dojo/"');
     head.appendChild(script);
 }());

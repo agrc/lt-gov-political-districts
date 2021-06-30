@@ -1,12 +1,5 @@
-/* global dojo */
 (function () {
     var baseUrl = './';
-
-    if (dojo.config.build === 'staging') {
-        baseUrl = 'https://politicaldistricts.dev.utah.gov/';
-    } else if (dojo.config.build === 'prod') {
-        baseUrl = 'https://politicaldistricts.ugrc.utah.gov/';
-    }
 
     var config = {
         baseUrl: baseUrl,
