@@ -4,7 +4,7 @@
   "description": "App for http://elections.utah.gov/map/district-maps",
   "main": "src/index.html",
   "scripts": {
-    "build": "grunt build-stage",
+    "build:stage": "grunt build-stage",
     "build:prod": "grunt build-prod",
     "start": "grunt",
     "test": "grunt eslint",
