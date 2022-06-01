@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/stdavis/lt-gov-political-districts#readme",
   "devDependencies": {
-    "bower": "^1.8.12",
+    "bower": "^1.8.14",
     "grunt": "^1.5.3",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-connect": "^3.0.0",
