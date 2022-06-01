@@ -21,17 +21,17 @@
   },
   "homepage": "https://github.com/stdavis/lt-gov-political-districts#readme",
   "devDependencies": {
-    "bower": "^1.8.12",
+    "bower": "^1.8.14",
     "grunt": "^1.5.3",
-    "grunt-contrib-clean": "^2.0.0",
+    "grunt-contrib-clean": "^2.0.1",
     "grunt-contrib-connect": "^3.0.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-uglify": "^5.0.1",
+    "grunt-contrib-uglify": "^5.2.1",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-dojo": "^1.1.1",
-    "grunt-eslint": "^23.0.0",
-    "grunt-replace": "^2.0.1",
+    "grunt-eslint": "^24.0.0",
+    "grunt-replace": "^2.0.2",
     "load-grunt-tasks": "^5.1.0",
-    "uglify-js": "^3.13.3"
+    "uglify-js": "^3.15.5"
   }
 }
