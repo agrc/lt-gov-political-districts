@@ -29,7 +29,7 @@
     "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-dojo": "^1.1.1",
-    "grunt-eslint": "^24.0.0",
+    "grunt-eslint": "^24.0.1",
     "grunt-replace": "^2.0.2",
     "load-grunt-tasks": "^5.1.0",
     "uglify-js": "^3.17.4"
